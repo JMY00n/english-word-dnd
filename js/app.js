@@ -323,7 +323,7 @@ function saveScore() {
             // 현재 유저 정보도 갱신
             state.currentUser.maxScore = state.score;
             localStorage.setItem('english_game_current_user', JSON.stringify(state.currentUser));
-            
+
             elements.bestScoreDisplay.innerText = `(Best: ${state.score})`;
             alert("축하합니다! 최고 기록 갱신!");
         }
@@ -429,6 +429,11 @@ function showGuideModal() {
             2. <strong>GAME START</strong>를 누르면 60초가 카운트됩니다.<br>
             3. 단어를 올바른 순서로 배열하고 <strong>Check</strong>를 누르세요.<br>
             4. 정답 시 +10점, 오답 시 -5점입니다.
+            
+            <span style="color: #5d5fef; font-weight: 600; background: #f0f1ff;
+            padding: 4px 8px; border-radius: 6px; display: block; text-align: center;">
+                ※ 권장 해상도: 400px × 800px
+            </span>
         </p>
     `;
     elements.modalOverlay.classList.remove("hidden");
