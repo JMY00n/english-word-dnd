@@ -1,124 +1,386 @@
+/* 기존 변수 유지 */
+:root {
+    --primary-color: #5d5fef;
+    --primary-hover: #4b4ddb;
+    --bg-color: #eff1f5;
+    --app-bg: #ffffff;
+    --correct: #2ecc71;
+    --wrong: #ff4757;
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ... (기존 기본 스타일 유지) ... */
 * {
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-  margin: 0;
-  background: #f2f4f8;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: #333;
 }
 
-/* 페이지 중앙 정렬 */
 .page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-/* 앱 프레임 */
 .app {
-  width: 360px;
-  min-height: 600px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+    width: 100%;
+    max-width: 400px;
+    background: var(--app-bg);
+    border-radius: 24px;
+    box-shadow: var(--shadow-md);
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    /* 메뉴 배치를 위해 */
+    border: 3px solid transparent;
 }
 
-/* 헤더 */
-.app-header {
-  text-align: center;
+/* === 1. 메뉴 드롭다운 === */
+.menu-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
 }
 
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    width: 140px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown.hidden {
+    display: none;
+}
+
+.menu-item {
+    padding: 12px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.menu-item:hover {
+    background: #f1f3f5;
+}
+
+.menu-item.hidden {
+    display: none;
+}
+
+
+/* === 2. 메인 UI 요소들 (헤더, 유저박스 등 기존 유지) === */
 .app-header h1 {
-  margin: 0;
-  font-size: 20px;
+    margin: 0;
+    font-size: 24px;
+    color: var(--primary-color);
+    text-align: center;
 }
 
 .sub {
-  font-size: 12px;
-  color: #666;
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
 }
 
-/* 사용자 정보 */
 .user-box {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f3f5;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 13px;
 }
 
-/* 문제 */
+.score-info {
+    display: flex;
+    gap: 12px;
+    /* Best와 Score 사이의 간격 (원하는 만큼 조절) */
+    align-items: center;
+}
+
+/* Best 점수 스타일 (조금 연하게) */
+#bestScoreDisplay {
+    color: #888;
+    font-weight: 500;
+}
+
+/* 현재 점수 스타일 (강조) */
+#scoreDisplay {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
 .question-box {
-  background: #f8f9fb;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 14px;
+    text-align: center;
 }
 
-/* 단어 카드 영역 */
+.kor-sentence {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+    word-break: keep-all;
+}
+
 .word-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
+    min-height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
 }
 
 .word {
-  padding: 6px 10px;
-  background: #e3e7ff;
-  border-radius: 8px;
-  cursor: grab;
-  user-select: none;
-  white-space: nowrap;
+    padding: 8px 14px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* 드롭 영역 */
+.word:active {
+    cursor: grabbing;
+}
+
 .drop-box {
-   min-height: 80px;
-  border: 2px dashed #aaa;
-  border-radius: 10px;
-  padding: 10px;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;              
-
-  font-size: 13px;
-  color: #777;
+    min-height: 100px;
+    background: #f8f9fa;
+    border: 2px dashed #cbd5e1;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.insert-zone {
-    flex: 1;
-    height: 100%;
+.hint {
+    color: #aaa;
+    font-size: 14px;
+    margin: 0;
+    pointer-events: none;
 }
 
 /* 버튼 */
 .control-box {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .control-box button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #4a6cff;
-  color: white;
-  cursor: pointer;
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: 0.2s;
 }
 
+#checkBtn {
+    background: var(--primary-color);
+}
+
+#checkBtn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+#nextBtn {
+    background: #aab0b6;
+}
+
+#nextBtn:disabled {
+    background: #e0e0e0;
+    cursor: not-allowed;
+}
+
+
+/* === 3. 타이머 & 시작 버튼 섹션 (요청사항) === */
+.timer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin-top: 10px;
+}
+
+.timer-display {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+}
+
+.timer-display span {
+    color: var(--primary-color);
+}
+
+.start-btn {
+    width: 100%;
+    padding: 14px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.start-btn:hover {
+    background: #000;
+}
+
+.start-btn.playing {
+    background: #ff4757;
+}
+
+/* 게임 중일 때 중단 버튼으로 색 변경 */
+
+
+/* === 4. 모달 (팝업) 스타일 === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 320px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.close-btn {
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #666;
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* 랭킹 테이블 */
+.rank-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.rank-table th {
+    background: #f1f3f5;
+    padding: 8px;
+}
+
+.rank-table td {
+    border-bottom: 1px solid #eee;
+    padding: 8px;
+}
+
+/* 피드백 효과 */
 .app.correct {
-    border: 3px solid #3cb371;
+    border-color: var(--correct);
+    animation: pulse 0.5s;
 }
 
 .app.wrong {
-    border: 3px solid #ff4d4f;
+    border-color: var(--wrong);
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.02);
+    }
 }
