@@ -49,13 +49,7 @@ const elements = {
 function init() {
     checkLoginStatus(); // 새로고침 시 로그인 유지 확인
     
-    // JSON 데이터 로드
-    fetch("data/questions.json")
-        .then(res => res.json())
-        .then(data => {
-            state.questions = data;
-        })
-        .catch(err => console.error("Data Load Error:", err));
+    state.questions = QUESTION_DATA;
 
     bindEvents();
 }
