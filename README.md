@@ -1,3 +1,11 @@
+2025학년도 2학기 프론트엔드 과제
+과목명: 프론트엔드 프로그래밍 II
+담당교수: 허봉식 교수님
+학과: 컴퓨터소프트웨어과
+학번: 202530533
+이름: 윤정민
+
+<hr>
 
 <img width="401" height="667" alt="화면 캡처 2025-12-21 110105" src="https://github.com/user-attachments/assets/4a4e4342-faea-40ac-b1cd-39d35ab34bae" />
 
