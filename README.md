@@ -7,7 +7,8 @@
 **이름:** 윤정민
 
 <hr>
-#### Main Page
+#### Main Page <br>
+
 <img width="401" height="667" alt="화면 캡처 2025-12-21 110105" src="https://github.com/user-attachments/assets/4a4e4342-faea-40ac-b1cd-39d35ab34bae" />
 
 # English Sentence Builder
